@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 
+import StarWars from './components/StarWars';
+
 class App extends Component {
   constructor() {
     super();
@@ -29,10 +31,28 @@ class App extends Component {
       });
   };
 
+  //toggleMenu for each character:
+  toggleMenu = event => {
+    console.log(event.target);
+    if (event.target.className === 'char menu-toggle') {
+      event.target.className = 'char';
+    }
+    else if (event.target.className === 'char') {
+      event.target.className = 'char menu-toggle';
+    }
+    else {
+      return;
+    }
+  }
+
   render() {
     return (
       <div className="App">
         <h1 className="Header">React Wars</h1>
+        <StarWars 
+        chars={this.state.starwarsChars} 
+        toggleMenu={this.toggleMenu}
+        />
       </div>
     );
   }
